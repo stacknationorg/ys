@@ -1,4 +1,6 @@
 // const connectToMongo = require('./db');
+
+require('dotenv').config();
 const express = require('express');
 const app = express()
 var cors = require('cors')
@@ -9,13 +11,11 @@ const authUser = require('./middleware/authUser');
 const cookieparser = require('cookie-parser')
 const session = require('express-session')
 const passport = require('passport')
-// const mongoose = require('mongoose')
+//const mongoose = require('mongoose')
 const FacebookStrategy = require('passport-facebook').Strategy
 const GoogleStrategy = require('passport-google-oauth2').Strategy
 const User = require('./models/user.model')
-// require("dotenv").config()
 // Routes
-
 
 app.use(express.static('public'))
 
