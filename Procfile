@@ -1,2 +1,2 @@
 web:node index.js
-heroku ps:scale web=1
+ps:scale web=1
