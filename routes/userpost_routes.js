@@ -72,7 +72,7 @@ router.post("/commentpost/:id", authenticate ,async  function(req,res){
     userPost.findOne({_id:post_id},function(err,foundOne){
         const objid=foundOne._id
     
-        MongoClient.connect('mongodb://localhost:27017', function(err, client) {
+        MongoClient.connect('mongodb://127.0.0.1:27017', function(err, client) {
         if(err) throw err;
         var db =client.db("openDB")
         var collection = db.collection('userposts');
@@ -104,7 +104,7 @@ router.post("/answerQuest/:id", authenticate ,async function(req,res){
     userPost.findOne({_id:post_id},function(err,foundOne){
         const objid=foundOne._id
 
-        MongoClient.connect('mongodb://localhost:27017', function(err, client) {
+        MongoClient.connect('mongodb://127.0.0.1:27017', function(err, client) {
         if(err) throw err;
         var db =client.db("openDB")
         var collection = db.collection('userposts');
@@ -136,7 +136,7 @@ router.post("/answercomment/:ans/:id", authenticate ,async function(req,res){
     userPost.findOne({_id:post_id},function(err,foundOne){
         const objid=foundOne._id
 
-        MongoClient.connect('mongodb://localhost:27017', function(err, client) {
+        MongoClient.connect('mongodb://127.0.0.1:27017', function(err, client) {
         if(err) throw err;
         var db =client.db("openDB")
         var collection = db.collection('userposts');
@@ -159,7 +159,7 @@ router.post('/update/:id', authenticate, function(req,res){
         console.log(objid);
         const name = foundOne.group
 
-        MongoClient.connect('mongodb://localhost:27017', function(err, client) {
+        MongoClient.connect('mongodb://127.0.0.1:27017', function(err, client) {
         if(err) throw err;
         var db =client.db("openDB")
         var collection = db.collection('userposts');
@@ -181,7 +181,7 @@ router.post('/delete/:id', authenticate , function(req,res){
         const objid=foundOne._id
         const name = foundOne.group
 
-        MongoClient.connect('mongodb://localhost:27017', function(err, client) {
+        MongoClient.connect('mongodb://127.0.0.1:27017', function(err, client) {
         if(err) throw err;
         var db =client.db("openDB")
         var collection = db.collection('userposts');
