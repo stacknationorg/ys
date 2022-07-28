@@ -31,7 +31,7 @@ const signupUser = async (req, res) => {
 			password: hash
 		})
 		await user.save()
-		res.redirect("/user/login")
+		res.json("/user/login")
 		// res.json({
 		// 	message: "Signup successfully."
 		// })
@@ -65,7 +65,7 @@ const loginUser = async (req, res) => {
 					uid: user._id
 				}, process.env.SECRET)
 				res.cookie('token', token, { httpOnly: true });
-				res.redirect("/")
+				res.json("/")
 			} else {
 				res.json({
 					error: "Invalid username or password." // Password didn't match
@@ -102,7 +102,7 @@ const userFollower = async (req,res) => {
 			$push:{followers:{user:follower_id},notifications:{notification:notify}}
 		}
 		)
-		res.redirect("/user/timeline")
+		res.json("/user/timeline")
 		
 
 	// await User.updateOne(
@@ -153,7 +153,7 @@ const updateUser = async (req, res) => {
 					location: (location || user.location)
 				}
 			)
-			res.redirect("/user/viewprofile/"+ user_id)
+			res.json("/user/viewprofile/"+ user_id)
 		}
 	} catch (error) {
 		res.json({
@@ -175,7 +175,7 @@ const authenticate = (req, res, next) => {
 			console.log(payload);
 			next()
 		} else {
-			res.redirect("/user/login")
+			res.json("/user/login")
 			// res.json({
 			// 	error: "Authantication failed",
 			// 	login: false
@@ -219,7 +219,7 @@ const logoutUser = (req, res) => {
 	// res.json({
 	// 	message: "Logged out successfully."
 	// })
-	res.redirect("/user/login")
+	res.json("/user/login")
 }
 
 const followUser = async (req, res) => {
@@ -252,7 +252,7 @@ const followUser = async (req, res) => {
 					}
 					)
 					// res.redirect("/user/timeline"
-				res.redirect("/userpost/timeline/"+post_id)
+				res.json("/userpost/timeline/"+post_id)
 				// res.json({
 				// 	message: 'Post disliked.',
 				// 	liked: false
@@ -267,7 +267,7 @@ const followUser = async (req, res) => {
 						$push:{notifications:{notification:notify}}
 					}
 					)
-				res.redirect("/userpost/timeline/"+post_id)
+				res.json("/userpost/timeline/"+post_id)
 				// res.json({
 				// 	message: "Post liked.",
 				// 	liked: true
