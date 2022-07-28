@@ -17,7 +17,7 @@ router.get('/timeline',authenticate, async (req, res) => {
     console.log(user_id);
 	const new_user = await User.findById({_id:id})
 	console.log(new_user);
-	res.render('user-timeline',{User:new_user})
+	res.json('user-timeline',{User:new_user})
 	// MongoClient.connect('mongodb://localhost:27017', function(err, client) {
     //     if(err) throw err;
     //     var db =client.db("openDB")
@@ -32,7 +32,7 @@ router.get('/timeline',authenticate, async (req, res) => {
 })
 
 router.get('/register', (req, res) => {
-    res.render('register')
+    res.json('register')
 })
 
 
@@ -40,13 +40,13 @@ router.get('/notifications/:id',authenticate, async (req, res) => {
 	user_id=req.params.id
     const user = await User.findById({_id:user_id})
 	console.log(user);
-    res.render('notifications',{User:user})
+    res.json('notifications',{User:user})
 })
 
 router.get("/viewprofile/:id", async (req,res)=>{
 	user_id=req.params.id
        const user = await User.findById({_id:user_id})
-	res.render("view-profile",{User:user})
+	res.json("view-profile",{User:user})
 })
 
 router.post('/signup', signupUser)
@@ -61,7 +61,7 @@ router.get('/callback/facebook', passport.authenticate('facebook', {
 
 router.get("/editprofile/:id",authenticate,async function(req,res){
 	const user = await User.findById({_id:req.params.id})
-	res.render("edit-profile",{User:user})
+	res.json("edit-profile",{User:user})
 })
 
 router.post("/followuser/:id",authenticate,followUser)
@@ -70,7 +70,7 @@ router.get("/followers/:id",async function(req,res){
 	const user_id = req.params.id
 	const user = await User.findById({_id:user_id})
 	console.log(user);
-	res.render("user-followers",{User:user})
+	res.json("user-followers",{User:user})
 })
 
 router.get('/login/google', passport.authenticate('google', { scope: 'email' }))
